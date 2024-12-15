@@ -3,19 +3,30 @@
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+	/* Primary Colors */
+	--color-primary: #1e3a8a; /* Midnight Blue */
+	--color-secondary: #22d3ee; /* Bright Aqua */
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
+	/* Functional Colors */
+	--color-success: #10b981; /* Emerald Green */
+	--color-error: #ef4444; /* Reddish Coral */
+	--color-warning: #facc15; /* Amber Yellow */
+	--color-info: #22d3ee; /* Same as secondary */
 
+	/* Backgrounds */
+	--bg-primary: #1f2937; /* Dark Charcoal (Main Background) */
+	--bg-secondary: #374151; /* Slate Gray (Secondary Background) */
+
+	/* Text */
+	--text-primary: #f9fafb; /* Almost White (Primary Text) */
+	--text-secondary: #9ca3af; /* Gray for Muted Text */
+
+	/* Hover States */
+	--hover-primary: #3b82f6; /* Slightly lighter blue */
+	--hover-secondary: #0e7490; /* Deeper aqua */
+}
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+	color: var(--text-primary);
+	background: var(--bg-primary);
+	font-family: Arial, Helvetica, sans-serif;
 }
