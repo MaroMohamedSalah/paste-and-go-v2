@@ -1,9 +1,12 @@
+import { Button } from "@nextui-org/react";
+import Link from "next/link";
+
 export default function Home() {
 	return (
-		<div>
+		<main>
 			<div className="container">
-				<h1 className="text-3xl mb-6">Please Enter The Pass Code</h1>
+				<Link href={"./passCode"}>GO</Link>
 			</div>
-		</div>
+		</main>
 	);
 }
