@@ -9,13 +9,15 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@nextui-org/input-otp": "^2.1.6",
     "@nextui-org/react": "^2.4.8",
     "@nextui-org/system": "^2.4.4",
     "@nextui-org/theme": "^2.4.3",
     "framer-motion": "^11.14.4",
     "next": "15.0.3",
     "react": "19.0.0-rc-66855b96-20241106",
-    "react-dom": "19.0.0-rc-66855b96-20241106"
+    "react-dom": "19.0.0-rc-66855b96-20241106",
+    "react-hook-form": "^7.54.1"
   },
   "devDependencies": {
     "@types/node": "^20",
