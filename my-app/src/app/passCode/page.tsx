@@ -28,9 +28,9 @@ const PassCode = () => {
 
 	return (
 		<div>
-			<div className="container flex justify-center items-center h-dvh">
-				<main>
-					<h1 className="text-3xl mb-6 text-center">Enter Your Pass Code</h1>
+			<main>
+				<div className="container flex justify-center items-center flex-col h-dvh">
+					<h1 className="text-4xl mb-6 text-center">Enter Your Pass Code</h1>
 
 					<InputOtp
 						length={VALID_PASS.length}
@@ -42,8 +42,8 @@ const PassCode = () => {
 						errorMessage={error}
 						isInvalid={!!error}
 					/>
-				</main>
-			</div>
+				</div>
+			</main>
 		</div>
 	);
 };
