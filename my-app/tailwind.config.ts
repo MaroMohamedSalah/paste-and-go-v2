@@ -1,6 +1,10 @@
 import { nextui } from "@nextui-org/react";
 import type { Config } from "tailwindcss";
 
+const colors = {
+	error: "red",
+};
+
 export default {
 	content: [
 		"./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
@@ -15,7 +19,7 @@ export default {
 				secondary: "var(--color-secondary)",
 
 				success: "var(--color-success)",
-				error: "var(--color-error)",
+				danger: "var(--color-error)",
 				warning: "var(--color-warning)",
 				info: "var(--color-info)",
 
@@ -46,5 +50,16 @@ export default {
 			},
 		},
 	},
-	plugins: [nextui()],
+	plugins: [
+		nextui({
+			addCommonColors: true,
+			themes: {
+				light: {
+					colors: {
+						background: "#374151",
+					},
+				},
+			},
+		}),
+	],
 } satisfies Config;
