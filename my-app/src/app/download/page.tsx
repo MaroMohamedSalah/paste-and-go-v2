@@ -50,6 +50,18 @@ const Download = () => {
 						onValueChange={setInputValue}
 						endContent={<FontAwesomeIcon icon={faDownload} />}
 					/>
+
+					<div
+						className={`${
+							inputValue ? "opacity-100" : "opacity-0"
+						} duration-75 ease-in-out`}
+					>
+						<DownloadBtn
+							title={mediaType === "url" ? "Download Now" : "Get User Profile"}
+							disabled={!!inputError}
+							cb={handleDownload}
+						/>
+					</div>
 				</div>
 			</main>
 		</div>
