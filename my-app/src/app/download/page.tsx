@@ -3,38 +3,46 @@ import { faDownload } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Input } from "@nextui-org/react";
 import { useEffect, useState } from "react";
+import DownloadBtn from "./DownloadBtn";
 
 const Download = () => {
 	const [inputValue, setInputValue] = useState("");
 	const [inputError, setInputError] = useState("");
+	const [inputType, setInputType] = useState("url");
 
-	const validateUrl = () => {
-		const regex = /(facebook\.com|youtu(be\.com|\.be)|instagram\.com)\/.+/;
+	const isUrl = () => {
+		const regex =
+			/(facebook\.com|fb\.watch|youtu(be\.com|\.be)|instagram\.com)\/.+/;
 		return regex.test(inputValue);
 	};
 
 	const handleInputChange = () => {
 		if (inputValue.startsWith("http")) {
-			validateUrl()
-				? setInputError("")
-				: setInputError(
-						"Please enter a valid link (Facebook, YouTube, Instagram)."
-				  );
+			if (isUrl()) {
+				setInputError("");
+				setInputType("url");
+			} else {
+				setInputError(
+					"Please enter a valid link (Facebook, YouTube, Instagram)."
+				);
+			}
 		} else {
 			setInputError("");
+			setInputType("username");
 		}
 	};
 
 	useEffect(() => {
 		handleInputChange();
-		console.log(inputError);
 	}, [inputValue]);
 
 	return (
 		<div>
 			<main>
 				<div className="container flex justify-center items-center flex-col h-dvh">
-					<h1 className="text-4xl mb-6 text-center">Paste & GO</h1>
+					<h1 className="text-4xl mb-6 text-center">
+						One Tool for All Your Downloads
+					</h1>
 
 					<Input
 						placeholder="Paste a link or enter a username"
@@ -57,9 +65,9 @@ const Download = () => {
 						} duration-75 ease-in-out`}
 					>
 						<DownloadBtn
-							title={mediaType === "url" ? "Download Now" : "Get User Profile"}
+							title={inputType === "url" ? "Download Now" : "Get User Profile"}
 							disabled={!!inputError}
-							cb={handleDownload}
+							userInput={inputValue}
 						/>
 					</div>
 				</div>
