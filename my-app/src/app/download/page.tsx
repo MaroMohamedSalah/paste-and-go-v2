@@ -1,77 +1,79 @@
 "use client";
-import { faDownload } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Input } from "@nextui-org/react";
 import { useEffect, useState } from "react";
-import DownloadBtn from "./DownloadBtn";
+import MainInput from "./MainInput";
+import Result from "./Result";
+import { AnimatePresence, LayoutGroup, motion } from "framer-motion";
+import { Button } from "@nextui-org/react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faChevronUp } from "@fortawesome/free-solid-svg-icons";
 
 const Download = () => {
-	const [inputValue, setInputValue] = useState("");
-	const [inputError, setInputError] = useState("");
-	const [inputType, setInputType] = useState("url");
-
-	const isUrl = () => {
-		const regex =
-			/(facebook\.com|fb\.watch|youtu(be\.com|\.be)|instagram\.com)\/.+/;
-		return regex.test(inputValue);
-	};
-
-	const handleInputChange = () => {
-		if (inputValue.startsWith("http")) {
-			if (isUrl()) {
-				setInputError("");
-				setInputType("url");
-			} else {
-				setInputError(
-					"Please enter a valid link (Facebook, YouTube, Instagram)."
-				);
-			}
-		} else {
-			setInputError("");
-			setInputType("username");
-		}
-	};
+	const [showInput, setShowInput] = useState(true);
+	const [noScroll, setNoScroll] = useState(true);
 
 	useEffect(() => {
-		handleInputChange();
-	}, [inputValue]);
+		setTimeout(() => {
+			setNoScroll(showInput);
+		}, 3000);
+	}, [showInput]);
 
 	return (
 		<div>
-			<main>
-				<div className="container flex justify-center items-center flex-col h-dvh">
-					<h1 className="text-4xl mb-6 text-center">
-						One Tool for All Your Downloads
-					</h1>
+			<motion.main
+				className={`relative ${
+					noScroll ? "overflow-hidden h-dvh" : "overflow-auto h-auto"
+				}`}
+			>
+				<div className="container">
+					<AnimatePresence mode="popLayout">
+						{showInput && (
+							<motion.div
+								key="input"
+								initial={{ y: -1000, opacity: 0, scale: 0.5 }}
+								animate={{ y: 0, opacity: 1, scale: 1 }}
+								exit={{ y: -1000, opacity: 0, scale: 0.5 }}
+								transition={{ type: "spring", duration: 2.5 }}
+								layout
+							>
+								<MainInput />
+							</motion.div>
+						)}
 
-					<Input
-						placeholder="Paste a link or enter a username"
-						type="text"
-						radius="sm"
-						size="lg"
-						className="w-full md:w-1/2"
-						color="primary"
-						autoFocus
-						errorMessage={inputError}
-						isInvalid={!!inputError}
-						value={inputValue}
-						onValueChange={setInputValue}
-						endContent={<FontAwesomeIcon icon={faDownload} />}
-					/>
+						<motion.div
+							initial={{ opacity: 0 }}
+							animate={{ opacity: 1 }}
+							exit={{ opacity: 0 }}
+							transition={{ type: "tween", duration: 1 }}
+							layout
+						>
+							<Result />
+						</motion.div>
+					</AnimatePresence>
 
-					<div
-						className={`${
-							inputValue ? "opacity-100" : "opacity-0"
-						} duration-75 ease-in-out`}
-					>
-						<DownloadBtn
-							title={inputType === "url" ? "Download Now" : "Get User Profile"}
-							disabled={!!inputError}
-							userInput={inputValue}
-						/>
-					</div>
+					<AnimatePresence mode="wait">
+						{!showInput && (
+							<motion.div
+								initial={{ opacity: 0 }}
+								animate={{ opacity: 1 }}
+								exit={{ opacity: 0 }}
+								transition={{ duration: 1, delay: 1 }}
+							>
+								<Button
+									onPress={() => {
+										setShowInput(true);
+									}}
+									className="absolute top-3 right-3"
+									variant="bordered"
+									radius="full"
+									color="secondary"
+								>
+									<FontAwesomeIcon icon={faChevronUp} />
+								</Button>
+							</motion.div>
+						)}
+					</AnimatePresence>
 				</div>
-			</main>
+			</motion.main>
 		</div>
 	);
 };

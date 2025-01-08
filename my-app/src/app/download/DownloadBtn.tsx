@@ -85,7 +85,9 @@ const DownloadBtn = ({
 			variant="solid"
 			radius="sm"
 			color="primary"
-			className="my-5"
+			className={`${
+				userInput ? "opacity-100" : "opacity-0"
+			} duration-75 ease-in-out my-5`}
 			isLoading={loading}
 			disabled={disabled}
 			onClick={() => handleDownload()}
