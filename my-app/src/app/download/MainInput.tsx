@@ -5,7 +5,11 @@ import { Input } from "@nextui-org/react";
 import { useEffect, useState } from "react";
 import DownloadBtn from "./DownloadBtn";
 
-const MainInput = () => {
+interface MainInputProps {
+	resultCb: Function;
+}
+
+const MainInput = ({ resultCb }: MainInputProps) => {
 	const [inputValue, setInputValue] = useState("");
 	const [inputError, setInputError] = useState("");
 	const [inputType, setInputType] = useState("url");
@@ -62,6 +66,7 @@ const MainInput = () => {
 					title={inputType === "url" ? "Download Now" : "Get User Profile"}
 					disabled={!!inputError}
 					userInput={inputValue}
+					resultCb={resultCb}
 				/>
 			</div>
 		</section>

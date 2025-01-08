@@ -9,6 +9,7 @@ interface DownloadBtnProps {
 	title: string;
 	disabled?: boolean;
 	userInput: string;
+	resultCb: Function;
 }
 
 enum MEDIA {
@@ -22,6 +23,7 @@ const DownloadBtn = ({
 	title,
 	disabled = false,
 	userInput,
+	resultCb,
 }: DownloadBtnProps) => {
 	const [loading, setLoading] = useState(false);
 
@@ -47,7 +49,7 @@ const DownloadBtn = ({
 		sendGetRequest(ENDPOINTS.fb.url(userInput), {
 			headers: ENDPOINTS.fb.headers,
 		})
-			.then((data) => console.log(data))
+			.then((data) => resultCb(data))
 			.catch((err) => console.error(err))
 			.finally(() => {
 				setLoading(false);

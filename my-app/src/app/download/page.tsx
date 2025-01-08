@@ -2,20 +2,20 @@
 import { useEffect, useState } from "react";
 import MainInput from "./MainInput";
 import Result from "./Result";
-import { AnimatePresence, LayoutGroup, motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { Button } from "@nextui-org/react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronUp } from "@fortawesome/free-solid-svg-icons";
 
 const Download = () => {
-	const [showInput, setShowInput] = useState(true);
 	const [noScroll, setNoScroll] = useState(true);
+	const [resultData, setResultData] = useState({});
 
 	useEffect(() => {
 		setTimeout(() => {
-			setNoScroll(showInput);
+			setNoScroll(Boolean(!Object.keys(resultData).length));
 		}, 3000);
-	}, [showInput]);
+	}, [resultData]);
 
 	return (
 		<div>
@@ -26,7 +26,7 @@ const Download = () => {
 			>
 				<div className="container">
 					<AnimatePresence mode="popLayout">
-						{showInput && (
+						{Object.keys(resultData).length === 0 && (
 							<motion.div
 								key="input"
 								initial={{ y: -1000, opacity: 0, scale: 0.5 }}
@@ -35,7 +35,7 @@ const Download = () => {
 								transition={{ type: "spring", duration: 2.5 }}
 								layout
 							>
-								<MainInput />
+								<MainInput resultCb={setResultData} />
 							</motion.div>
 						)}
 
@@ -51,7 +51,7 @@ const Download = () => {
 					</AnimatePresence>
 
 					<AnimatePresence mode="wait">
-						{!showInput && (
+						{Object.keys(resultData).length !== 0 && (
 							<motion.div
 								initial={{ opacity: 0 }}
 								animate={{ opacity: 1 }}
@@ -60,7 +60,7 @@ const Download = () => {
 							>
 								<Button
 									onPress={() => {
-										setShowInput(true);
+										setResultData({});
 									}}
 									className="absolute top-3 right-3"
 									variant="bordered"
