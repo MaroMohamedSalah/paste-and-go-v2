@@ -3,6 +3,7 @@ import { Button } from "@nextui-org/react";
 import { sendGetRequest } from "../services/apiClient";
 import { ENDPOINTS } from "../config/endpoints";
 import { useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 
 interface DownloadBtnProps {
 	title: string;
@@ -81,19 +82,23 @@ const DownloadBtn = ({
 	};
 
 	return (
-		<Button
-			variant="solid"
-			radius="sm"
-			color="primary"
-			className={`${
-				userInput ? "opacity-100" : "opacity-0"
-			} duration-75 ease-in-out my-5`}
-			isLoading={loading}
-			disabled={disabled}
-			onClick={() => handleDownload()}
+		<motion.div
+			initial={{ rotate: -3, scale: 1.3, opacity: 0 }}
+			animate={userInput && { opacity: 1, scale: 1, rotate: 0 }}
+			whileHover={{ rotate: -3, scale: 1.3 }}
 		>
-			{title}
-		</Button>
+			<Button
+				variant="solid"
+				radius="sm"
+				color="primary"
+				className="my-5"
+				isLoading={loading}
+				disabled={disabled}
+				onClick={() => handleDownload()}
+			>
+				{title}
+			</Button>
+		</motion.div>
 	);
 };
 
