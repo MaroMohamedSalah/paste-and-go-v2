@@ -9,24 +9,24 @@ import { faChevronUp } from "@fortawesome/free-solid-svg-icons";
 
 const Download = () => {
 	const [noScroll, setNoScroll] = useState(true);
-	const [resultData, setResultData] = useState({});
+	const [result, setResult] = useState({});
 
 	useEffect(() => {
 		setTimeout(() => {
-			setNoScroll(Boolean(!Object.keys(resultData).length));
+			setNoScroll(Boolean(!Object.keys(result).length));
 		}, 3000);
-	}, [resultData]);
+	}, [result]);
 
 	return (
 		<div>
-			<motion.main
-				className={`relative ${
-					noScroll ? "overflow-hidden h-dvh" : "overflow-auto h-auto"
-				}`}
-			>
-				<div className="container">
+			<motion.main>
+				<div
+					className={`container ${
+						noScroll ? "overflow-hidden h-dvh" : "overflow-auto min-h-dvh"
+					}`}
+				>
 					<AnimatePresence mode="popLayout">
-						{Object.keys(resultData).length === 0 && (
+						{Object.keys(result).length === 0 && (
 							<motion.div
 								key="input"
 								initial={{ y: -1000, opacity: 0, scale: 0.5 }}
@@ -35,7 +35,7 @@ const Download = () => {
 								transition={{ type: "spring", duration: 2.5 }}
 								layout
 							>
-								<MainInput resultCb={setResultData} />
+								<MainInput resultCb={setResult} />
 							</motion.div>
 						)}
 
@@ -46,12 +46,12 @@ const Download = () => {
 							transition={{ type: "tween", duration: 1 }}
 							layout
 						>
-							<Result />
+							<Result result={result} />
 						</motion.div>
 					</AnimatePresence>
 
 					<AnimatePresence mode="wait">
-						{Object.keys(resultData).length !== 0 && (
+						{Object.keys(result).length !== 0 && (
 							<motion.div
 								initial={{ opacity: 0 }}
 								animate={{ opacity: 1 }}
@@ -60,7 +60,7 @@ const Download = () => {
 							>
 								<Button
 									onPress={() => {
-										setResultData({});
+										setResult({});
 									}}
 									className="absolute top-3 right-3"
 									variant="bordered"

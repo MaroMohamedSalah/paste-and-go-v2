@@ -49,7 +49,7 @@ const DownloadBtn = ({
 		sendGetRequest(ENDPOINTS.fb.url(userInput), {
 			headers: ENDPOINTS.fb.headers,
 		})
-			.then((data) => resultCb(data))
+			.then((result) => resultCb(result.data))
 			.catch((err) => console.error(err))
 			.finally(() => {
 				setLoading(false);
