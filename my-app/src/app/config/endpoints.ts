@@ -9,10 +9,10 @@ export const ENDPOINTS = {
 	},
 	yt: {
 		url: (videoUrl: string) =>
-			`https://vkrdownloader1.p.rapidapi.com/server?vkr=${videoUrl}`,
+			`https://youtube-video-and-shorts-downloader1.p.rapidapi.com/api/getYTVideo?url=${videoUrl}`,
 		headers: {
 			"x-rapidapi-key": "251033cf4emshf3054a8b4557678p1fac0ajsn81864a3c4d44",
-			"x-rapidapi-host": "vkrdownloader1.p.rapidapi.com",
+			"x-rapidapi-host": "youtube-video-and-shorts-downloader1.p.rapidapi.com",
 		},
 	},
 	ig_user_info: (user_or_url: string) =>
