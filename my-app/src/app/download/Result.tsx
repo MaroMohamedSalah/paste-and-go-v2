@@ -20,7 +20,7 @@ const Result = ({ result }: any) => {
 				setPaths({
 					thumbnail: result.data.thumbnail,
 					title: result.data.title,
-					downloads: linkDataNormalization("facebook", result.data?.downloads),
+					downloads: linkDataNormalization(result.data?.downloads),
 				});
 				break;
 			case "youtube":
@@ -30,7 +30,7 @@ const Result = ({ result }: any) => {
 						result.data.stats.thumbnails[1]?.url ||
 						result.data.stats.thumbnails[0]?.url,
 					title: result.data.description,
-					downloads: linkDataNormalization("youtube", result.data?.links),
+					downloads: linkDataNormalization(result.data?.links),
 				});
 				break;
 
@@ -40,10 +40,9 @@ const Result = ({ result }: any) => {
 	};
 
 	const linkDataNormalization = (
-		platform: string,
 		downloads: any[]
 	): { link: string; label: string }[] => {
-		switch (platform) {
+		switch (result.platform) {
 			case "facebook":
 				return downloads.map((item) => ({
 					link: item.url,
