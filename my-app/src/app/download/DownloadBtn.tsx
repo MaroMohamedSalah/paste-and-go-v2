@@ -49,7 +49,7 @@ const DownloadBtn = ({
 		sendGetRequest(ENDPOINTS.fb.url(userInput), {
 			headers: ENDPOINTS.fb.headers,
 		})
-			.then((result) => resultCb(result.data))
+			.then((result) => resultCb({ platform: "facebook", data: result.data }))
 			.catch((err) => console.error(err))
 			.finally(() => {
 				setLoading(false);
@@ -61,7 +61,7 @@ const DownloadBtn = ({
 		sendGetRequest(ENDPOINTS.yt.url(userInput), {
 			headers: ENDPOINTS.yt.headers,
 		})
-			.then((data) => console.log(data))
+			.then((result) => resultCb({ platform: "youtube", data: result }))
 			.catch((err) => console.error(err))
 			.finally(() => {
 				setLoading(false);
