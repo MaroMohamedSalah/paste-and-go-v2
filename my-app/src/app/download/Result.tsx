@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import DownLoadOptionBtn from "./DownloadOptionBtn";
 
 const Result = ({ result }: any) => {
 	const [paths, setPaths] = useState({
@@ -33,6 +34,13 @@ const Result = ({ result }: any) => {
 					downloads: linkDataNormalization(result.data?.links),
 				});
 				break;
+			case "instagram_reel":
+				setPaths({
+					thumbnail: result.data.thumbnail,
+					title: result.data.title,
+					downloads: linkDataNormalization(result.data?.medias),
+				});
+				break;
 
 			default:
 				break;
@@ -55,6 +63,11 @@ const Result = ({ result }: any) => {
 						link: item.link,
 						label: item.qualityLabel,
 					}));
+			case "instagram_reel":
+				return downloads.map((item) => ({
+					link: item.url,
+					label: item.quality,
+				}));
 			default:
 				return [];
 		}
@@ -70,17 +83,11 @@ const Result = ({ result }: any) => {
 				viewport={{ once: false, amount: 0.2 }}
 				transition={{ delay: index * 0.15 }}
 			>
-				<Link href={option.link} target="_blank">
-					<Button
-						fullWidth
-						color="primary"
-						radius="sm"
-						aria-label={`Download media in ${option.label}`}
-						className="transition-all duration-200 hover:shadow-lg"
-					>
-						{option.label}
-					</Button>
-				</Link>
+				<DownLoadOptionBtn
+					label={option.label}
+					link={option.link}
+					mediaTitle={paths.title}
+				/>
 			</motion.div>
 		));
 	};

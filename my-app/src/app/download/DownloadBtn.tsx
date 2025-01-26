@@ -68,6 +68,20 @@ const DownloadBtn = ({
 			});
 	};
 
+	const instagramReelDownload = () => {
+		setLoading(true);
+		sendGetRequest(ENDPOINTS.ig_reel.url(userInput), {
+			headers: ENDPOINTS.ig_reel.headers,
+		})
+			.then((result) =>
+				resultCb({ platform: "instagram_reel", data: result.data })
+			)
+			.catch((err) => console.error(err))
+			.finally(() => {
+				setLoading(false);
+			});
+	};
+
 	const handleDownload = () => {
 		switch (true) {
 			case isUrl(MEDIA.FB):
@@ -76,6 +90,10 @@ const DownloadBtn = ({
 
 			case isUrl(MEDIA.YT):
 				youtubeVideoDownload();
+				break;
+
+			case isUrl(MEDIA.IG):
+				instagramReelDownload();
 				break;
 
 			default:
