@@ -3,13 +3,13 @@ import { Button } from "@nextui-org/react";
 import { sendGetRequest } from "../services/apiClient";
 import { ENDPOINTS } from "../config/endpoints";
 import { useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { motion } from "framer-motion";
 
 interface DownloadBtnProps {
 	title: string;
 	disabled?: boolean;
 	userInput: string;
-	resultCb: Function;
+	resultCb: (value: any) => void;
 }
 
 enum MEDIA {

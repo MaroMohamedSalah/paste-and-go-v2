@@ -6,8 +6,9 @@ import { useEffect, useState } from "react";
 import DownloadBtn from "./DownloadBtn";
 
 interface MainInputProps {
-	resultCb: Function;
+	resultCb: (value: string) => void;
 }
+
 
 const MainInput = ({ resultCb }: MainInputProps) => {
 	const [inputValue, setInputValue] = useState("");
