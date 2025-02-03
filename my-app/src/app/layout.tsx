@@ -26,6 +26,9 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang="en">
+			<head>
+			<script src="https://cdn.userway.org/widget.js" data-account="NE0ON2a6Ol"></script>
+			</head>
 			<body
 				className={`${geistSans.variable} ${geistMono.variable} antialiased`}
 			>
