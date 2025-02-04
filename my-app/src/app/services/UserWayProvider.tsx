@@ -1,15 +1,14 @@
 "use client";
-import Head from "next/head";
+import Script from "next/script";
 
 const UserWayProvier = ({ children }: { children: React.ReactNode }) => {
   return (
     <>
-      <Head>
-        <script
-          src="https://cdn.userway.org/widget.js"
-          data-account="NE0ON2a6Ol"
-        ></script>
-      </Head>
+      <Script
+        src="https://cdn.userway.org/widget.js"
+        data-account="NE0ON2a6Ol"
+        strategy="lazyOnload"
+      />
       {children}
     </>
   );
