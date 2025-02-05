@@ -108,8 +108,6 @@ const Result = ({ result }: any) => {
 							className="object-contain rounded"
 							alt="Media Thumbnail"
 							fill
-							onLoadStart={() => "start loading"}
-							onLoadingComplete={() => "end loading"}
 						/>
 					) : (
 						<FontAwesomeIcon className="text-5xl" icon={faImage} />

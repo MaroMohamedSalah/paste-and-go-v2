@@ -21,9 +21,8 @@ const Download = () => {
 		<div>
 			<motion.main>
 				<div
-					className={`container ${
-						noScroll ? "overflow-hidden h-dvh" : "overflow-auto min-h-dvh"
-					}`}
+					className={`container ${noScroll ? "overflow-hidden h-dvh" : "overflow-auto min-h-dvh"
+						}`}
 				>
 					<AnimatePresence mode="popLayout">
 						{Object.keys(result).length === 0 && (
