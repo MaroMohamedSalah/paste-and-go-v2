@@ -41,6 +41,7 @@ const PassCode = () => {
 						onValueChange={setPassValue}
 						errorMessage={error}
 						isInvalid={!!error}
+						autoFocus
 					/>
 				</div>
 			</main>
