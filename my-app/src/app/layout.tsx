@@ -2,8 +2,6 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import { NextUIProvider, User } from "@nextui-org/react";
-import Head from "next/head";
-import UserWayProvider from "./services/UserWayProvider";
 import Script from "next/script";
 
 const geistSans = localFont({
