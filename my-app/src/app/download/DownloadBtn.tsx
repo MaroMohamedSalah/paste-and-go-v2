@@ -1,5 +1,5 @@
 "use client";
-import { Button } from "@nextui-org/react";
+import { Button } from "@heroui/react";
 import { sendGetRequest } from "../services/apiClient";
 import { ENDPOINTS } from "../config/endpoints";
 import { useState } from "react";
@@ -105,15 +105,15 @@ const DownloadBtn = ({
 		<motion.div
 			initial={{ rotate: -3, scale: 1.3, opacity: 0, display: "none" }}
 			animate={userInput && { opacity: 1, scale: 1, rotate: 0, display: "block" }}
-			whileHover={{ rotate: -3, scale: 1.3 }}
+			whileHover={!disabled ? { rotate: -3, scale: 1.3 } : undefined}
 		>
 			<Button
 				variant="solid"
 				radius="sm"
 				color="primary"
-				className="my-5"
+				className="my-5 disabled:opacity-40"
 				isLoading={loading}
-				disabled={disabled}
+				isDisabled={disabled}
 				onPress={() => handleDownload()}
 			>
 				{title}

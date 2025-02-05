@@ -1,5 +1,5 @@
 "use client";
-import { InputOtp } from "@nextui-org/input-otp";
+import { InputOtp } from "@heroui/input-otp";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 

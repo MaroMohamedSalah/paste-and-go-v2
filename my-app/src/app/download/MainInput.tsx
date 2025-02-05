@@ -1,7 +1,7 @@
 "use client";
 import { faDownload } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Input } from "@nextui-org/react";
+import { Input } from "@heroui/react";
 import { useEffect, useState } from "react";
 import DownloadBtn from "./DownloadBtn";
 import { isValidUrl, isValidUserName } from "../config/utils/validators";

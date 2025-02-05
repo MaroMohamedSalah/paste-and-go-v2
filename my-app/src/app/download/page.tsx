@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import MainInput from "./MainInput";
 import Result from "./Result";
 import { AnimatePresence, motion } from "framer-motion";
-import { Button } from "@nextui-org/react";
+import { Button } from "@heroui/react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronUp } from "@fortawesome/free-solid-svg-icons";
 
