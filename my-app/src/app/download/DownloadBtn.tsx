@@ -103,8 +103,8 @@ const DownloadBtn = ({
 
 	return (
 		<motion.div
-			initial={{ rotate: -3, scale: 1.3, opacity: 0 }}
-			animate={userInput && { opacity: 1, scale: 1, rotate: 0 }}
+			initial={{ rotate: -3, scale: 1.3, opacity: 0, display: "none" }}
+			animate={userInput && { opacity: 1, scale: 1, rotate: 0, display: "block" }}
 			whileHover={{ rotate: -3, scale: 1.3 }}
 		>
 			<Button
@@ -114,7 +114,7 @@ const DownloadBtn = ({
 				className="my-5"
 				isLoading={loading}
 				disabled={disabled}
-				onClick={() => handleDownload()}
+				onPress={() => handleDownload()}
 			>
 				{title}
 			</Button>
