@@ -2,7 +2,7 @@
 import { Button } from "@heroui/react";
 import { sendGetRequest } from "../services/apiClient";
 import { ENDPOINTS } from "../config/endpoints";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 
 interface DownloadBtnProps {
@@ -100,6 +100,14 @@ const DownloadBtn = ({
 				break;
 		}
 	};
+
+	useEffect(() => {
+		window.onkeydown = (e) => {
+			if (e.key === "Enter") {
+				handleDownload();
+			}
+		}
+	}, [])
 
 	return (
 		<motion.div
