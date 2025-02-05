@@ -3,7 +3,8 @@ import localFont from "next/font/local";
 import "./globals.css";
 import { NextUIProvider, User } from "@nextui-org/react";
 import Head from "next/head";
-import UserWayProvier from "./services/UserWayProvider";
+import UserWayProvider from "./services/UserWayProvider";
+import Script from "next/script";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -28,12 +29,27 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <Head>
+        <Script id="gtm-script" strategy="lazyOnload">{`
+  (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-P6TZRWJ2');
+`}</Script>
+      </Head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <NextUIProvider>
-          <UserWayProvier>{children}</UserWayProvier>
-        </NextUIProvider>
+        <noscript>
+          <iframe
+            src={`https://www.googletagmanager.com/ns.html?id=GTM-P6TZRWJ2`}
+            height="0"
+            width="0"
+            style={{ display: "none", visibility: "hidden" }}
+          />
+        </noscript>
+        <NextUIProvider>{children}</NextUIProvider>
       </body>
     </html>
   );

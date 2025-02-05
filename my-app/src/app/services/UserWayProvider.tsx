@@ -1,7 +1,7 @@
 "use client";
 import Script from "next/script";
 
-const UserWayProvier = ({ children }: { children: React.ReactNode }) => {
+const UserWayProvider = ({ children }: { children: React.ReactNode }) => {
   return (
     <>
       <Script
@@ -14,4 +14,4 @@ const UserWayProvier = ({ children }: { children: React.ReactNode }) => {
   );
 };
 
-export default UserWayProvier;
+export default UserWayProvider;
