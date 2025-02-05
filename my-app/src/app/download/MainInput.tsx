@@ -4,26 +4,22 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Input } from "@nextui-org/react";
 import { useEffect, useState } from "react";
 import DownloadBtn from "./DownloadBtn";
+import { isValidUrl, isValidUserName } from "../config/utils/validators";
 
 interface MainInputProps {
 	resultCb: (value: string) => void;
 }
-
 
 const MainInput = ({ resultCb }: MainInputProps) => {
 	const [inputValue, setInputValue] = useState("");
 	const [inputError, setInputError] = useState("");
 	const [inputType, setInputType] = useState("url");
 
-	const isUrl = () => {
-		const regex =
-			/(facebook\.com|fb\.watch|youtu(be\.com|\.be)|instagram\.com)\/.+/;
-		return regex.test(inputValue);
-	};
-
 	const handleInputChange = () => {
-		if (inputValue.startsWith("http")) {
-			if (isUrl()) {
+		const trimmedInput = inputValue.trim();
+
+		if (trimmedInput.startsWith("http")) {
+			if (isValidUrl(trimmedInput)) {
 				setInputError("");
 				setInputType("url");
 			} else {
@@ -31,10 +27,21 @@ const MainInput = ({ resultCb }: MainInputProps) => {
 					"Please enter a valid link (Facebook, YouTube, Instagram)."
 				);
 			}
-		} else {
+			return;
+		}
+
+		if (isValidUserName(trimmedInput)) {
 			setInputError("");
 			setInputType("username");
+			return;
 		}
+
+		if (trimmedInput.length !== 0) {
+			setInputError("Please enter a valid username.");
+			return;
+		}
+
+		setInputError("");
 	};
 
 	useEffect(() => {
