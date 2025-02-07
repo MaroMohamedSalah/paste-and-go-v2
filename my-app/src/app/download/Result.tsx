@@ -96,8 +96,10 @@ const Result = ({ result }: any) => {
 	}, [result]);
 
 	useEffect(() => {
-		console.log(paths);
+		console.log("thumbnail", paths.thumbnail);
 	}, [paths]);
+
+
 	return (
 		<section className="mb-5 mt-20">
 			<header>
@@ -108,6 +110,7 @@ const Result = ({ result }: any) => {
 							className="object-contain rounded"
 							alt="Media Thumbnail"
 							fill
+							onError={() => setPaths({ ...paths, thumbnail: "" })}
 						/>
 					) : (
 						<FontAwesomeIcon className="text-5xl" icon={faImage} />
